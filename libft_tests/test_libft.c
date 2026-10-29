@@ -1,13 +1,20 @@
 /*
+
 ** Compilation et lancement, depuis libft_tests :
 **     make -C ../libft bonus
 **     cc -Wall -Wextra -Werror test_libft.c -I../libft -L../libft -lft -o test_libft
 **     ./test_libft
 **
+** Sans bonus ajouter -DNO_BONUS et lancer
+** "make" au lieu de "make bonus" :
+**     make -C ../libft
+**     cc -Wall -Wextra -Werror -DNO_BONUS test_libft.c -I../libft -L../libft -lft -o test_libft
+**
 ** Vérifier les fuites mémoire :
 **     Linux : valgrind --leak-check=full ./test_libft
+**     Mac   : leaks --atExit -- ./test_libft
 **
-** Simule un malloc qui échoue au milieu de ft_lstmap
+** Linux : simule un malloc qui échoue au milieu de ft_lstmap
 ** et ft_split pour vérifier que tout est libéré :
 **     cc -Wall -Wextra -Werror -DTEST_MALLOC_FAIL -Wl,--wrap=malloc \
 **        test_libft.c -I../libft -L../libft -lft -o test_libft
@@ -76,6 +83,10 @@ static int	same_sign(int a, int b)
 	return ((a > 0) == (b > 0) && (a < 0) == (b < 0));
 }
 
+/* ------------------------------------------------------------------ */
+/* Implémentations de référence (absentes de la libc Linux)            */
+/* ------------------------------------------------------------------ */
+
 static size_t	ref_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	len;
@@ -138,6 +149,10 @@ static void	capture(void (*fn)(int))
 		g_out[0] = '\0';
 	close(fds[0]);
 }
+
+/* ------------------------------------------------------------------ */
+/* Partie 1                                                            */
+/* ------------------------------------------------------------------ */
 
 static void	test_ctype(void)
 {
@@ -363,6 +378,10 @@ static void	test_calloc(void)
 	end();
 }
 
+/* ------------------------------------------------------------------ */
+/* Partie 2                                                            */
+/* ------------------------------------------------------------------ */
+
 static int	split_is(char **tab, const char **expected)
 {
 	int	ok;
@@ -521,6 +540,12 @@ static void	test_part2(void)
 	end();
 }
 
+/* ------------------------------------------------------------------ */
+/* Bonus (retirés à la compilation avec -DNO_BONUS)                    */
+/* ------------------------------------------------------------------ */
+
+#ifndef NO_BONUS
+
 static int	g_dels = 0;
 static int	g_iters = 0;
 
@@ -664,6 +689,12 @@ static void	test_bonus(void)
 	end();
 }
 
+#endif /* NO_BONUS */
+
+/* ------------------------------------------------------------------ */
+/* Échec de malloc (Linux, avec -DTEST_MALLOC_FAIL -Wl,--wrap=malloc)  */
+/* ------------------------------------------------------------------ */
+
 #ifdef TEST_MALLOC_FAIL
 
 void		*__real_malloc(size_t size);
@@ -683,10 +714,33 @@ static void	fail_malloc_at(int n)
 	g_fail_at = n;
 }
 
-static void	test_malloc_fail(void)
+#ifndef NO_BONUS
+
+static void	test_malloc_fail_lstmap(void)
 {
 	t_list	*lst;
 	t_list	*map;
+	int		n;
+
+	start("ft_lstmap");
+	lst = make_list();
+	for (n = 1; n < 8; n += 2)
+	{
+		g_dels = 0;
+		fail_malloc_at(n);
+		map = ft_lstmap(lst, map_upper, del_count);
+		g_fail_at = -1;
+		CHECK(map == NULL);
+		ft_lstclear(&map, del_count);
+	}
+	ft_lstclear(&lst, del_count);
+	end();
+}
+
+#endif /* NO_BONUS */
+
+static void	test_malloc_fail(void)
+{
 	char	**tab;
 	int		n;
 
@@ -701,19 +755,9 @@ static void	test_malloc_fail(void)
 		CHECK(tab == NULL);
 	}
 	end();
-	start("ft_lstmap");
-	lst = make_list();
-	for (n = 1; n < 8; n += 2)
-	{
-		g_dels = 0;
-		fail_malloc_at(n);
-		map = ft_lstmap(lst, map_upper, del_count);
-		g_fail_at = -1;
-		CHECK(map == NULL);
-		ft_lstclear(&map, del_count);
-	}
-	ft_lstclear(&lst, del_count);
-	end();
+#ifndef NO_BONUS
+	test_malloc_fail_lstmap();
+#endif
 	start("ft_itoa / strdup");
 	fail_malloc_at(0);
 	CHECK(ft_itoa(42) == NULL);
@@ -737,8 +781,12 @@ int	main(void)
 	test_calloc();
 	printf(BOLD "\nPartie 2" RESET "\n");
 	test_part2();
+#ifndef NO_BONUS
 	printf(BOLD "\nBonus" RESET "\n");
 	test_bonus();
+#else
+	printf(BOLD "\nBonus" RESET " : non testés (compilé avec -DNO_BONUS)\n");
+#endif
 #ifdef TEST_MALLOC_FAIL
 	test_malloc_fail();
 #endif
