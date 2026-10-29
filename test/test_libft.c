@@ -1,11 +1,4 @@
 /*
-** test_libft.c : tests de la libft (fichier à NE PAS rendre)
-**
-** Ce dossier doit être à côté du dossier libft :
-**     hans/
-**       libft/         (le projet)
-**       libft_tests/   (ce fichier)
-**
 ** Compilation et lancement, depuis libft_tests :
 **     make -C ../libft bonus
 **     cc -Wall -Wextra -Werror test_libft.c -I../libft -L../libft -lft -o test_libft
@@ -13,9 +6,8 @@
 **
 ** Vérifier les fuites mémoire :
 **     Linux : valgrind --leak-check=full ./test_libft
-**     Mac   : leaks --atExit -- ./test_libft
 **
-** Bonus, Linux uniquement : simule un malloc qui échoue au milieu de ft_lstmap
+** Simule un malloc qui échoue au milieu de ft_lstmap
 ** et ft_split pour vérifier que tout est libéré :
 **     cc -Wall -Wextra -Werror -DTEST_MALLOC_FAIL -Wl,--wrap=malloc \
 **        test_libft.c -I../libft -L../libft -lft -o test_libft
@@ -28,10 +20,6 @@
 #include <ctype.h>
 #include <limits.h>
 #include <stdint.h>
-
-/* ------------------------------------------------------------------ */
-/* Mini framework de test                                              */
-/* ------------------------------------------------------------------ */
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -72,7 +60,6 @@ static void	end(void)
 		g_fn_ok++;
 }
 
-/* compare une chaîne allouée au résultat attendu, puis la libère */
 static int	str_is(char *got, const char *expected)
 {
 	int	ok;
@@ -88,10 +75,6 @@ static int	same_sign(int a, int b)
 {
 	return ((a > 0) == (b > 0) && (a < 0) == (b < 0));
 }
-
-/* ------------------------------------------------------------------ */
-/* Implémentations de référence (absentes de la libc Linux)            */
-/* ------------------------------------------------------------------ */
 
 static size_t	ref_strlcpy(char *dst, const char *src, size_t size)
 {
@@ -138,7 +121,6 @@ static char	*ref_strnstr(const char *hay, const char *needle, size_t len)
 	return (NULL);
 }
 
-/* lit ce qu'une fonction ft_put*_fd écrit, grâce à un pipe */
 static char	g_out[256];
 
 static void	capture(void (*fn)(int))
@@ -156,10 +138,6 @@ static void	capture(void (*fn)(int))
 		g_out[0] = '\0';
 	close(fds[0]);
 }
-
-/* ------------------------------------------------------------------ */
-/* Partie 1                                                            */
-/* ------------------------------------------------------------------ */
 
 static void	test_ctype(void)
 {
@@ -385,10 +363,6 @@ static void	test_calloc(void)
 	end();
 }
 
-/* ------------------------------------------------------------------ */
-/* Partie 2                                                            */
-/* ------------------------------------------------------------------ */
-
 static int	split_is(char **tab, const char **expected)
 {
 	int	ok;
@@ -547,10 +521,6 @@ static void	test_part2(void)
 	end();
 }
 
-/* ------------------------------------------------------------------ */
-/* Bonus                                                               */
-/* ------------------------------------------------------------------ */
-
 static int	g_dels = 0;
 static int	g_iters = 0;
 
@@ -694,10 +664,6 @@ static void	test_bonus(void)
 	end();
 }
 
-/* ------------------------------------------------------------------ */
-/* Échec de malloc (Linux, avec -DTEST_MALLOC_FAIL -Wl,--wrap=malloc)  */
-/* ------------------------------------------------------------------ */
-
 #ifdef TEST_MALLOC_FAIL
 
 void		*__real_malloc(size_t size);
@@ -735,8 +701,6 @@ static void	test_malloc_fail(void)
 		CHECK(tab == NULL);
 	}
 	end();
-	/* allocations de ft_lstmap : f (strdup), maillon, f, maillon...
-	** on fait échouer chaque création de maillon (indices impairs) */
 	start("ft_lstmap");
 	lst = make_list();
 	for (n = 1; n < 8; n += 2)
