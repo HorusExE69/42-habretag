@@ -1,5 +1,5 @@
-#ifndef FT_GET_NEXT_LINE_BONUS_H
-# define FT_GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
 # ifndef BUFFER_SIZE
