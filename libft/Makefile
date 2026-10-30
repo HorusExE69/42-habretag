@@ -25,7 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 		ar rcs $(NAME) $^
 
-%.o: %.c
+%.o: %.c libft.h
 	cc -c $(FLAGS) $< -o $@
 
 bonus: .bonus
