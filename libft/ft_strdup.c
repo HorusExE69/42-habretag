@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:07 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:57:07 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/02 16:28:46 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static char	*ft_strcpy(char *dest, const char *src)
 	return (dest);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s)
 {
 	char	*res;
 
-	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!res)
 		return (NULL);
-	ft_strcpy(res, s1);
+	ft_strcpy(res, s);
 	return (res);
 }

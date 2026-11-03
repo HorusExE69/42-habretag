@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:32 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:57:32 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/03 15:07:03 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	if (n == 0)
+	if (n == 0 || (!s1 || !s2))
 		return (0);
 	i = 0;
 	while ((s1[i] || s2[i]) && (i != n))

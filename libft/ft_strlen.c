@@ -6,18 +6,18 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:27 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:57:27 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/02 16:16:01 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *s)
 {
 	size_t	n;
 
 	n = 0;
-	while (str[n] != '\0')
+	while (s[n] != '\0')
 		n ++;
 	return (n);
 }
