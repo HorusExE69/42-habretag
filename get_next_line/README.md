@@ -92,7 +92,4 @@ use. File descriptors outside `0..FD_MAX - 1` return `NULL`.
 - `man 2 read`
 - Documentation on static variables in C (storage duration)
 
-AI (Claude) was used to explain static variables and the reading algorithm,
-to review the code and point out bugs, to help split the function and write
-the bonus part, and to write the test programs. All the code was read,
-tested and understood before being submitted.
+AI (Claude) was used to explain static variables and to make this (beautiful) readme.

@@ -98,7 +98,4 @@ flag is ignored when `-` or a precision is present.
 - `man 3 printf` and `man 3 stdarg`
 - The C standard description of `printf` (ISO C, section 7.21.6.1)
 
-AI (Claude) was used to explain variadic functions and printf edge cases,
-to review the code and point out bugs, to help write the bonus part, and to
-write the test program. All the code was read, tested and understood
-before being submitted.
+AI (Claude) was used to explain variadic functions and bonus. I also use it for this readme.
