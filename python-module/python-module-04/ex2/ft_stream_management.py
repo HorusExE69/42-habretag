@@ -24,12 +24,27 @@ if __name__ == "__main__":
         print("---\n")
         print(content)
         print("\n---")
-        n_file = input("Enter new file name (or empty): ")
+        print("Enter new file name (or empty): ", end="", flush=True)
+        n_file = sys.stdin.readline().strip()
         if n_file:
-            with open(n_file, "w", encoding="utf-8") as n_fd:
-                print(f"Saving data to '{n_file}'")
-                n_fd.write(content)
-            print(f"Data saved in file '{n_file}'")
+            print(f"Saving data to '{n_file}'")
+            try:
+                with open(n_file, "w", encoding="utf-8") as n_fd:
+                    n_fd.write(content)
+                print(f"Data saved in file '{n_file}'")
+            except PermissionError:
+                print(
+                    f"[STDERR] Error opening file '{n_file}': [Errno 13] Permission denied: '{n_file}'", file=sys.stderr)
+                print("Data not saved")
+                sys.exit(1)
+            except FileNotFoundError:
+                print(
+                    f"[STDERR] Error opening file '{n_file}': [Errno 2] No such file or directory: '{n_file}'", file=sys.stderr
+                )
+            except IsADirectoryError:
+                print(
+                    f"[STDERR] Error opening file '{n_file}': [Errno 21] Is a directory: '{n_file}'", file=sys.stderr
+                )
         else:
             print("No saving data")
     except PermissionError:
