@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 12:25:20 by esaillan          #+#    #+#             */
-/*   Updated: 2026/11/10 15:55:00 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/12 14:49:28 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (res * s);
+}
+
+int	is_sorted(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->stack[i] > a->stack[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

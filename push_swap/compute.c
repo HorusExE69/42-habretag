@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 11:13:26 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/10 15:56:56 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/11 13:54:51 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static float	compute_disorder(t_stack a)
 	while (i < a.size - 1)
 	{
 		j = i + 1;
-		while (j < a.size - 1)
+		while (j < a.size)
 		{
 			tot_pairs++;
 			if (a.stack[i] > a.stack[j])
@@ -48,6 +48,5 @@ t_result	*compute_algo(t_stack *a)
 		// complex algo
 		return (NULL);
 	else
-		// mid algo
-		return (NULL);
+		return (medium_algo(a));
 }

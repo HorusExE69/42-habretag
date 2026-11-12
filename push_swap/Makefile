@@ -1,11 +1,11 @@
 CC			= cc
 CFLAGS		= -Wextra -Wall -Werror -g
 NAME		= push_swap
-SRCS		= main.c compute.c simple_algorithm.c \
-			  utils.c utils2.c utils3.c utils4.c \
+SRCS		= main.c compute.c simple_algorithm.c mid_algo.c bucket.c init.c \
+			  utils.c utils2.c utils3.c utils4.c utils5.c \
 			  operators_s_.c operators_p_.c operators_r_.c operators_rr_.c operators.c \
 			  ft_printf.c ft_printf_utils1.c ft_printf_utils2.c \
-			  test.c
+			  display.c
 OBJS		= $(SRCS:.c=.o)
 HEADERS		= push_swap.h stack.h operators.h result.h ft_printf.h
 
