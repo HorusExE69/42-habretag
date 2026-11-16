@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:22 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/16 10:43:05 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/16 11:03:50 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	j;
-	
+
 	i = 0;
 	if (!src)
-	return (0);
+		return (0);
 	while (src[i])
 		i++;
 	if (size == 0)
