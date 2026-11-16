@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:35 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 16:01:27 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/16 10:47:53 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	if (*little == '\0')
 		return ((char *)big);
 	i = 0;
-	while (big[i] && i < len)
+	while (i < len && big[i])
 	{
 		j = 0;
 		while (little[j] && (i + j) < len && big[i + j] == little[j])
