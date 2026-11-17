@@ -6,11 +6,9 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:50 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:57:50 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/17 10:00:00 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_tolower(int c)
 {

@@ -6,7 +6,7 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:14 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/16 10:52:22 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/17 09:59:33 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	len_dst = 0;
 	while (len_dst < size && dst[len_dst] != '\0')
 		len_dst++;
-	if (len_dst == size)
+	if (len_dst >= size)
 		return (size + len_src);
 	i = len_dst;
 	if (size == 0)
 		return (len_src);
-	else if (len_dst >= size)
-		return (size + len_src);
 	while (i < size - 1 && src[i - len_dst])
 	{
 		dst[i] = src[i - len_dst];

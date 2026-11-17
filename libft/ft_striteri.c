@@ -6,11 +6,9 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:57:09 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:57:10 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/17 09:59:10 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

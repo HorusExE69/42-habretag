@@ -16,7 +16,7 @@ ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJS = $(SRCS:.c=.o)
 NAME = libft.a
-FLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 
 all: $(NAME)
@@ -24,8 +24,8 @@ all: $(NAME)
 $(NAME): $(OBJS)
 		ar rcs $(NAME) $^
 
-%.o: %.c libft.h
-	cc -c $(FLAGS) $< -o $@
+%.o: %.c libft.h Makefile
+	cc -c $(CFLAGS) $< -o $@
 
 clean:
 		rm -f $(OBJS)

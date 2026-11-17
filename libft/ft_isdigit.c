@@ -6,11 +6,9 @@
 /*   By: habretag <habretag@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 13:55:05 by habretag          #+#    #+#             */
-/*   Updated: 2026/11/02 13:55:06 by habretag         ###   ########lyon.fr   */
+/*   Updated: 2026/11/17 09:58:02 by habretag         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_isdigit(int c)
 {
